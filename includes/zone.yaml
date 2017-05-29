@@ -1,0 +1,22 @@
+############################################################
+#
+# Zones
+#
+############################################################
+
+- name: Home
+  latitude: !secret HOME_LAT
+  longitude: !secret HOME_LON
+  radius: 20
+
+- name: Neil's Work
+  latitude: !secret WORK_LAT
+  longitude: !secret WORK_LON
+  radius: 100
+  icon: mdi:briefcase
+
+- name: Gaby's Work
+  latitude: !secret WORK_GABY_LAT
+  longitude: !secret WORK_GABY_LON
+  radius: 100
+  icon: mdi:briefcase

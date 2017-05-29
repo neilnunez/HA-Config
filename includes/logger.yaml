@@ -1,0 +1,22 @@
+############################################################
+#
+# Logger
+#
+############################################################
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+
+#default: info
+default: critical
+
+logs:
+#  homeassistant.core: debug
+  homeassistant.components.automation: debug
+  homeassistant.components.sensor: debug
+  homeassistant.components.binary_sensor: debug
+  homeassistant.components.sensor.alarmdecoder: debug
+#  homeassistant.components.camera: debug
+#  homeassistant.components.discovery: warn
+#  homeassistant.components.http: warn
+#  requests.packages.urllib3.connectionpool: warn
+#  homeassistant.components.apcupsd: debug

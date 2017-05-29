@@ -1,0 +1,37 @@
+############################################################
+#
+# Home Assistant Camera Configuration
+#
+############################################################
+
+- platform: mjpeg
+  mjpeg_url: http://cctv01nnm/video/mjpg.cgi?profile=1
+  name: Bebes
+  username: !secret CCTVUSR
+  password: !secret CCTVPASS
+
+- platform: mjpeg
+  mjpeg_url: http://cctv02nnm/webcapture.jpg?command=snap&channel=0
+  name: Oficina
+
+#- platform: ffmpeg
+#  input: rtsp://cctv02nnm:554/user=neil&password=tequila22&channel=1&stream=1.sdp
+#  name: Oficina
+#  extra_arguments: -q:v 2
+#  changes: 4
+#  reset: 20
+#  repeat: 0
+#  repeat_time: 0
+
+- platform: mjpeg
+  mjpeg_url: http://cctv03nnm/webcapture.jpg?command=snap&channel=0
+  name: Sala/Comedor
+
+# - platform: ffmpeg
+#  input: rtsp://cctv04nnm:554/user=neil&password=tequila22&channel=1&stream=1.sdp
+#  name: Stairs
+#  extra_arguments: -q:v 2
+#  changes: 4
+#  reset: 20
+#  repeat: 0
+#  repeat_time: 0

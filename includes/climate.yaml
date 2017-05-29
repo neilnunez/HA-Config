@@ -1,0 +1,16 @@
+############################################################
+#
+# Climate
+#
+############################################################
+#  - platform: generic_thermostat
+#    name: Estudio
+#    heater: switch.ac_estudio
+#    target_sensor: sensor.hum_bat_30_1
+#    ac_mode: on
+#    min_temp: 22
+#    max_temp: 32
+#    target_temp: 25
+#    tolerance: 2
+#    min_cycle_duration:
+#      minutes: 5

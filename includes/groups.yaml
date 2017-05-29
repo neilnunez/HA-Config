@@ -1,0 +1,129 @@
+############################################################
+#
+# Home Assistant Default View
+#
+############################################################
+default_view:
+  view: yes
+  entities:
+    - group.family
+    - group.network
+    - group.alarm
+    - group.environment
+    - group.weather
+    - group.travel
+    - group.switches
+
+Rooms:
+  view: yes
+  entities:
+    - group.estudio
+    - group.master
+
+cameras:
+  view: yes
+  name: CCTV
+  entities:
+    - camera.bebes
+    - camera.oficina
+    - camera.salacomedor
+
+system:
+  view: yes
+  name: System
+  entities:
+    - group.batteries
+    - group.servidor
+    - group.power
+    - group.weblinks
+
+family:
+  name: Family
+  entities:
+    - device_tracker.neilsiphone
+    - device_tracker.gabrielasiphone
+
+network:
+  name: Network
+  entities:
+    - sensor.external_ip
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+Switches:
+  - switch.relaybutton_1_1
+  - switch.neil_lamp
+  - switch.gaby_lamp
+  - switch.babies_lamp
+  - switch.ac_master_bedroom
+  - switch.ac_estudio
+
+Estudio:
+  - camera.oficina
+  - switch.relaybutton_1_1
+  - switch.ac_estudio
+  - sensor.dhttemphumbat_44_0
+  - sensor.dhttemphumbat_44_1
+  - media_player.estudio
+  - climate.estudio
+
+Master:
+  - switch.neil_lamp
+  - switch.gaby_lamp
+  - switch.ac_master_bedroom
+  - sensor.slimtemphumbat_43_0
+  - sensor.slimtemphumbat_43_1
+
+alarm:
+  name: Alarm
+  entities:
+    - sensor.alarm_panel_display
+    - alarm_control_panel.alarm_panel 
+    - input_select.alarm_mode
+    - binary_sensor.puerta_principal
+    - binary_sensor.puerta_cocina
+
+Batteries:
+  - sensor.battery_neilsiphone
+  - sensor.battery_gabrielasiphone
+
+Weather:
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_humidity
+  - sensor.dark_sky_precip_probability
+  - sensor.dark_sky_precip_intensity
+
+Travel:
+  - sensor.gaby_to_work
+  - sensor.neil_to_work
+
+Environment:
+  - sensor.temp_babies
+  - sensor.hum_babies
+  - sensor.dhttemphumbat_44_0
+  - sensor.dhttemphumbat_44_1
+  - sensor.slimtemphumbat_43_0
+  - sensor.slimtemphumbat_43_1
+
+Servidor:
+  - sensor.cpu_use
+  - sensor.ram_free
+  - sensor.disk_use_
+
+power:
+  name: UPS
+  entities:
+    - sensor.apc_ups_battery_runtime
+    - sensor.apc_ups_input_voltage
+    - sensor.apc_ups_load
+    - sensor.apc_ups_status_data
+
+weblinks:
+  name: Weblinks
+  entities:
+    - weblink.nas
+    - weblink.router
+    - weblink.switch
+    - weblink.transmission

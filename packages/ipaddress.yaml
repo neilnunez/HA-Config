@@ -1,0 +1,22 @@
+# Network Package Module
+
+sensor:
+# Provides external IP address
+  - platform: rest
+#    resource: http://ip.jsontest.com
+    resource: https://api.ipify.org/?format=json
+    name: External IP
+    scan_interval: 900
+    value_template: '{{ value_json.ip }}'
+# Speed Test
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload

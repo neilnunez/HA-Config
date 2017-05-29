@@ -1,0 +1,115 @@
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                DEVICES                                           #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+device_tracker.neilsiphone:
+  friendly_name: 'Neil'
+  entity_picture: '/local/neil.jpg'
+
+device_tracker.gabrielasiphone:
+  friendly_name: 'Gaby'
+  entity_picture: '/local/gaby.jpg'
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSORS                                           #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+# Sun
+sun.sun:
+  hidden: true
+
+# MySensors
+switch.relaybutton_1_1:
+  friendly_name: Estudio
+  icon: mdi:lightbulb
+sensor.dhttemphumbat_44_1:
+  friendly_name: Hum Estudio
+  icon: mdi:water-percent
+sensor.dhttemphumbat_44_0:
+  friendly_name: Temp Estudio
+  icon: mdi:thermometer
+sensor.slimtemphumbat_43_0:
+  friendly_name: Temp Master
+  icon: mdi:thermometer
+sensor.slimtemphumbat_43_1:
+  friendly_name: Hum Master
+  icon: mdi:water-percent
+
+# Broadlink
+switch.ac_master_bedroom:
+  icon: mdi:air-conditioner
+switch.ac_estudio:
+  icon: mdi:air-conditioner
+
+# MQTT
+switch.neil_lamp:
+  friendly_name: Neil's Lamp
+  icon: mdi:lightbulb
+switch.gaby_lamp:
+  friendly_name: Gaby's Lamp
+  icon: mdi:lightbulb
+switch.babies_lamp:
+  friendly_name: Babies's Lamp
+  icon: mdi:lightbulb
+
+# SpeedTest
+sensor.speedtest_ping:
+  icon: mdi:speedometer
+  friendly_name: Ping
+sensor.speedtest_download:
+  icon: mdi:download
+  friendly_name: Download
+sensor.speedtest_upload:
+  icon: mdi:upload
+  friendly_name: Upload
+
+# iPhones Batteries
+sensor.battery_neilsiphone:
+  icon: mdi:cellphone-iphone
+  friendly_name: 'Neil''s iPhone'
+sensor.battery_gabrielasiphone:
+  icon: mdi:cellphone-iphone
+  friendly_name: 'Gaby''s iPhone'
+
+# Weather
+sensor.dark_sky_summary:
+  friendly_name: 'Weather'
+  icon: mdi:white-balance-sunny
+sensor.dark_sky_temperature:
+  friendly_name: 'Outside Temperature'
+sensor.dark_sky_humidity:
+  friendly_name: 'Outside Humidity'
+  icon: mdi:water-percent
+sensor.dark_sky_precip_probability:
+  friendly_name: 'Precip Probability'
+  icon: mdi:water
+sensor.dark_sky_precip_intensity:
+  friendly_name: 'Precip Intensity'
+  icon: mdi:weather-pouring
+
+# Google Travel Time
+sensor.neil_to_work:
+  friendly_name: Neil
+  icon: mdi:car
+sensor.gaby_to_work:
+  friendly_name: Gaby
+  icon: mdi:car
+
+# Environment
+sensor.temp_babies:
+  friendly_name: Temp Cuarto Bebes
+  icon: mdi:thermometer
+sensor.hum_babies:
+  friendly_name: Hum Cuarto Bebes
+  icon: mdi:water-percent
+
+# Climate
+climate.estudio:
+  icon: mdi:air-conditioner

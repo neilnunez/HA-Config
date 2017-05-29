@@ -1,0 +1,137 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  latitude: !secret HOME_LAT
+  longitude: !secret HOME_LON
+  # Impacts weather/sunrise data
+  elevation: 4
+  # C for Celsius, F for Fahrenheit
+  #temperature_unit: C
+  # New unit system config
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Guayaquil
+  customize: !include includes/customized.yaml
+
+# Packages
+  packages:
+    security: !include packages/security.yaml
+
+# HTTP
+http:
+  api_password: !secret HA_PASSWORD
+  trusted_networks:
+    - 127.0.0.1
+
+# Track the sun
+sun:
+  elevation: 4
+
+# Enables the frontend
+frontend:
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables support for tracking state changes over time.
+history:
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+    entities:
+      - sensor.alarm_panel_display
+      - sensor.last_boot
+      - sensor.date
+
+# Enables access to mysql db
+recorder:
+  purge_days: 15
+  db_url: !secret DBCNT
+
+# Allows you to issue voice commands from the frontend
+#conversation:
+
+# Discover some devices automatically
+discovery:
+
+# Sensors
+sensor: !include includes/sensors.yaml
+
+# View all events in a logbook
+logbook:
+
+# Logger
+logger: !include includes/logger.yaml
+
+# Checks for available updates
+#updater:
+
+############################################################
+#
+# Components
+#
+############################################################
+mysensors:
+  gateways:
+   - device: mqtt
+     persistence_file: '/home/neil/.homeassistant/mysensors.json'
+     topic_in_prefix: 'msgw1-out'
+     topic_out_prefix: 'msgw1-in'
+  optimistic: false
+  persistence: true
+  retain: true
+  version: 2.0
+
+mqtt:
+  broker: localhost
+  port: 1883
+  client_id: hass01
+  keepalive: 60
+
+device_tracker:
+  - platform: icloud
+    username: !secret ICLOUDUSR
+    password: !secret ICLOUDPASS
+    
+  - platform: unifi
+    host: !secret UNIHOST
+    username: !secret UNIUSR
+    password: !secret UNIPASSWD
+    verify_ssl: false
+
+ios:
+
+notify:
+    name: pushover
+    platform: pushover
+    api_key: !secret API_KEY
+    user_key: !secret USER_KEY
+
+weblink:
+  entities:
+    - name: Router
+      url: https://192.168.1.1
+    - name: Switch
+      url: http://192.168.1.10
+    - name: Nas
+      url: https://192.168.250.20
+    - name: Transmission
+      url: http://192.168.250.20:9091
+
+############################################################
+#
+# Includes
+#
+############################################################
+# Single Files
+camera: !include includes/cameras.yaml
+zone: !include includes/zone.yaml
+media_player: !include includes/media_player.yaml
+switch: !include includes/switches.yaml
+climate: !include includes/climate.yaml
+group: !include includes/groups.yaml
+
+automation: !include automations.yaml
+config:

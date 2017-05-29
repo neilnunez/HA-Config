@@ -1,0 +1,58 @@
+############################################################
+#
+# Sonoff EspEasy
+#
+############################################################
+  - platform: mqtt
+    name: "Neil Lamp"
+    state_topic: "/iot02nnm/relay/state"
+    command_topic: "/iot02nnm/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 1
+    retain: true
+
+  - platform: mqtt
+    name: "Gaby Lamp"
+    state_topic: "/iot03nnm/relay/state"
+    command_topic: "/iot03nnm/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 1
+    retain: true
+
+  - platform: mqtt
+    name: "Babies Lamp"
+    state_topic: "/iot04nnm/relay/state"
+    command_topic: "/iot04nnm/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 1
+    retain: true
+
+############################################################
+#
+# Broadlink BlackBean
+#
+############################################################
+  - platform: broadlink
+    host: 192.168.30.20
+    mac: 'B4:43:0D:E4:2B:78'
+    timeout: 30
+    type: rm_mini
+    switches:
+      ac_master_bedroom:
+        friendly_name: 'A/C Master Bedroom'
+        command_on: 'JgDKAJGPEzMTERMzFDQTEBMREzMTERMQEzQTERMREzMTNBMQEzQTERM0ExATNBM0EzMUNBM0EjQTEBM0ExETERMQExETEBMREzMTERMQExETERMQExETMxMREzMUMxQ0EzIUNBMzE6qRjxMzExETNBM0ExATERMzExETERM0ExATERMzEzUSERMzFBAUMxMREzIUNBM1EjQTMxM0ExETNBMRExATEBMRExATERMzFBETEBMRExATERMQEzQTEBM0EzQTNBMzEzQTNBQADQUAAAAAAAAAAAAAAAAAAA=='
+        command_off: 'JgDKAJGPEzQTERMzEzQTEBMREzMUERMQEzQTEBMREzMTNBMREzQTEBM0EzMTNRM0ExATNBMzEzUTEBMRExATERMzExETEBMyFjMTNBMQExETEBMRExAUEBQQExAUMxM0EzMTNBQzE6mSjhQzExETMxM0ExETERMzExETEBM0ExATERM0EzQTEBM0ExAUMxQzFDQSNBMQEzQTNBM0ExETEBMQExETMxQRExATNBM0EzMTERMQFBATERMQExETEBMREzMTNBM0EzQTNBMADQUAAAAAAAAAAAAAAAAAAA=='
+
+  - platform: broadlink
+    host: 192.168.30.21
+    mac: 'B4:43:0D:E4:17:D3'
+    timeout: 30
+    type: rm_mini
+    switches:
+      ac_estudio:
+        friendly_name: 'A/C Estudio'
+        command_on: 'JgDKAJWRFzIXDhYxFzEUERQRFDQXDxYOFzEXDhcOFzEXMRYQFDMTNRQRFDQWMhYyFTIUNBcxFw8WMRcPFBEUERQRFBEUERQSFjIUEBcPFBAWEBQPFw8WMRYPFDQXMRcxFzEUNBYyF5eVkRcyFw4WMRYyFBEUERQ0Fw8WDxYxFw8WDhcxFTMTEhM0FzMUERQ0FzEXMhQzFjIWMhcOFzEWDxUPFw8VDxcPFRAUERcxFhATERQRFBEUERQRFDQWDxYyFjIVMxM1FjIWMRcADQUAAAAAAAAAAAAAAAAAAA=='
+        command_off: 'JgDKAJGPEzQTERMzEzQTEBMREzMUERMQEzQTEBMREzMTNBMREzQTEBM0EzMTNRM0ExATNBMzEzUTEBMRExATERMzExETEBMyFjMTNBMQExETEBMRExAUEBQQExAUMxM0EzMTNBQzE6mSjhQzExETMxM0ExETERMzExETEBM0ExATERM0EzQTEBM0ExAUMxQzFDQSNBMQEzQTNBM0ExETEBMQExETMxQRExATNBM0EzMTERMQFBATERMQExETEBMREzMTNBM0EzQTNBMADQUAAAAAAAAAAAAAAAAAAA=='

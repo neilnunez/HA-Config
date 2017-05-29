@@ -1,0 +1,77 @@
+automation:
+  # Automate input select
+
+  # Automation Logic
+  - alias: Arm Away Alarm
+    trigger:
+        platform: state
+        entity_id: group.family
+        from: 'on'
+        to: 'off'
+    condition:
+        condition: state
+        entity_id: input_select.alarm_mode
+        state: 'automatic'
+    action:
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          entity_id: alarm_control_panel.alarm_panel
+          code: !secret ALARMCD
+      - service: notify.pushover
+        data_template:
+          title: "Alarm has Armed Away!"
+          message: "Alarm has Armed"
+
+  - alias: Disarm Away Alarm
+    trigger:
+      platform: state
+      entity_id: group.family
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: input_select.alarm_mode
+      state: 'automatic'
+    action:
+      - service: alarm_control_panel.alarm_disarm
+        data:
+          entity_id: alarm_control_panel.alarm_panel
+          code: !secret ALARMCD
+      - service: notify.pushover
+        data_template:
+          title: "Alarm has Armed Away!"
+          message: "Alarm has Disarmed"
+
+  - alias: Notify Alarm Armed Home
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.alarm_panel
+      to: 'armed_home'
+    action:
+      service: notify.pushover
+      data_template:
+        title: "Alarm has Armed Home!"
+        message: "Alarm has Armed"
+
+  - alias: Notify Alarm triggered
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.alarm_panel
+      to: 'triggered'
+    action:
+      service: notify.pushover
+      data_template:
+        title: "Alarm has triggered!"
+        message: "Alarm has triggered: {{states('sensor.alarm_panel_display')}}"
+
+# Report IP changes
+automation:
+  - alias: IP Changed
+    trigger:
+      - platform: state
+        entity_id: sensor.external_ip
+    action:
+      service: notify.pushover
+      data_template:
+        title: "External IP changed!"
+        message: "External IP Address has change to: '{{ states.sensor.external_ip.state }}'"

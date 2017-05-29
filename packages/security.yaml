@@ -1,0 +1,49 @@
+alarmdecoder:
+  device:
+    type: socket
+    host: 192.168.250.50
+    port: 10000
+  panel_display: on
+  zones:
+    02:
+      name: 'Puerta Principal'
+      type: 'opening'
+    03:
+      name: 'Ventana Sala'
+      type: 'opening'
+    04:
+      name: 'Ventana Patio'
+      type: 'opening'
+    05:
+      name: 'Sensor Sala'
+      type: 'moving'
+    06:
+      name: 'Sensor Cocina'
+      type: 'moving'
+    07:
+      name: 'Puerta Cocina'
+      type: 'opening'
+    08:
+      name: 'Ventana Cocina'
+      type: 'opening'
+    10:
+      name: 'Sensor Planta Alta'
+      type: 'moving'
+    11:
+      name: 'Ventana Cuarto Principal'
+      type: 'opening'
+    12:
+      name: 'Ventana Cuarto Posterior'
+      type: 'opening'
+    13:
+      name: 'Tamper'
+      type: 'opening'
+
+input_select:
+  alarm_mode:
+    name: Alarm mode
+    options:
+     - automatic
+     - standby
+    initial: standby
+    icon: mdi:security-home

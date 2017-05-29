@@ -1,0 +1,108 @@
+- id: turn_off_master_bed_ac
+  alias: 'Turn off Master Bed AC'
+  trigger:
+    platform: time
+    after: '03:30:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.ac_master_bedroom
+- id: turn_on_babies_lamp
+  alias: 'Turn on Babies Lamp'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_planta_alta
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: time
+    after: '05:20:00'
+    before: '06:15:00'
+  action:
+    service: switch.turn_on
+    entity_id: switch.babies_lamp
+- id: turn_off_babies_lamp
+  alias: 'Turn off Babies Lamp'
+  trigger:
+    platform: state
+    entity_id: switch.babies_lamp
+    state: 'on'
+  condition:
+    condition: time
+    after: '06:20:00'
+    before: '06:40:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.babies_lamp
+- id: alert_when_door_open_for_too_long
+  alias: 'Alert when door is opened for too long'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.puerta_principal
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 60
+  action:
+    service: notify.pushover
+    data_template:
+      title: "Alarm Panel"
+      message: "Front door is opened for more than 1 minute"
+- id: change_alarm_arm_mode_automatic
+  alias: 'Change Alarm Arm Mode to Automatic'
+  trigger:
+    platform: time
+    after: '11:30:00'
+  condition:
+    condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.alarm_mode
+      option: "automatic"
+- id: change_alarm_arm_mode_standby
+  alias: 'Change Alarm Arm Mode to Standby'
+  trigger:
+    platform: time
+    after: '23:30:00'
+  condition:
+    condition: time
+    weekday: sun
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.alarm_mode
+      option: "standby"
+- id: notify_alarm_triggered
+  alias: 'Notify Alarm triggered'
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.alarm_panel
+    to: 'triggered'
+  action:
+    service: notify.pushover
+    data_template:
+      title: "Alarm Panel"
+      message: "Alarm has triggered: {{states('sensor.alarm_panel_display')}}"
+- id: arm_alarm_nobody_home
+  alias: 'Arm Alarm Away when Nobody Home'
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'home'
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: input_select.alarm_mode
+    state: 'automatic'
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      data:
+        entity_id: alarm_control_panel.alarm_panel
+        code: !secret ALARMCD
+    - service: notify.pushover
+      data_template:
+        title: "Alarm Panel"
+        message: "Alarm has Armed Away"

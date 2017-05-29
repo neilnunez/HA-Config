@@ -1,0 +1,37 @@
+sensor:
+  - platform: nut
+    name: APC UPS
+    host: nas01nnm
+    port: 3493
+    username: !secret UPSUSER
+    password: !secret UPSUSER
+    resources:
+      - input.voltage
+      - ups.load
+      - ups.status
+      - battery.runtime
+
+#automation:
+#  - alias: Mains power is back online
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.ups_online_status
+#      from: 'off'
+#      to: 'on'
+#    action:
+#      service: notify.pushover
+#      data:
+#        message: "Mains Power is back Online!"
+#        title: "Mains Power is back Online!"
+
+#  - alias: Mains power is down
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.ups_online_status
+#      from: 'on'
+#      to: 'off'
+#    action:
+#      service: notify.pushover
+#      data:
+#        message: "Mains Power is Down!"
+#        title: "Mains Power is Down!"
